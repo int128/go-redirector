@@ -1,14 +1,13 @@
 package main
 
-import (
-  "fmt"
-  "net/http"
-)
+import "net/http"
+
+const redirect_to = "http://iwata.hidetake.org"
 
 func init () {
   http.HandleFunc("/", handler)
 }
 
 func handler (w http.ResponseWriter, r *http.Request) {
-  fmt.Fprint(w, "Hello")
+  http.Redirect(w, r, redirect_to, http.StatusMovedPermanently)
 }
